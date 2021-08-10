@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: voting-deployment
+  labels:
+    app: voting-deployment
+    tier: frontend-deployment
+spec:
+  selector:
+    matchLabels:
+      app: voting
+  replicas: 4
+  template:
+    metadata:
+      name: voting-app
+      labels:
+        app: voting
+        tier: frontend
+    spec:
+      containers:
+        - name: voting-app
+          image: kodekloud/examplevotingapp_vote:v1

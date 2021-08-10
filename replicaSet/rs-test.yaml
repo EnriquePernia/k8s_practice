@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: rs-test
+  labels:
+    app: rs-test
+    type:  test
+spec:
+  template:
+    metadata:
+      name: app-prueba
+      labels:
+        app: nginx
+        type: test
+    spec:
+      containers:
+        - name: nginx
+          image: nginx
+  selector:
+    matchLabels:
+      type: test
+  replicas: 6

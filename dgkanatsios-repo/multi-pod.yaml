@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: two-containers
+spec:
+
+  restartPolicy: Never
+
+  volumes:
+  - name: shared-data
+    emptyDir: {}
+
+  containers:
+
+  - name: busybox1
+    image: busybox
+    volumeMounts:
+    - name: shared-data
+      mountPath: /usr/share/nginx/html
+    command: ["/bin/sh"]
+    args: ["-c", "echo Hello; sleep 3600"]
+  - name: busybox2
+    image: busybox
+    volumeMounts:
+    - name: shared-data
+      mountPath: /pod-data
+    command: ["/bin/sh"]
+    args: ["-c", "echo Hello; sleep 3600"]

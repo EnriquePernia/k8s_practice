@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: config-test
+  labels:
+    name: config-test
+    tier: declarative-way
+data:
+  APP_COLOR: blue
+  PORT: "23454"
+  URL: http://localhost:nginx
